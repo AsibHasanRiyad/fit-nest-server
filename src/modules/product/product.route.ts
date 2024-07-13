@@ -9,3 +9,13 @@ router.post(
   validateRequest(ProductValidation.createProductValidationSchema),
   ProductController.createProduct
 );
+router.get("/", ProductController.getAllProducts);
+router.get("/:id", ProductController.getSingleProduct);
+router.delete("/:id", ProductController.deleteSingleProduct);
+router.patch(
+  "/:id",
+  validateRequest(ProductValidation.updateProductValidationSchema),
+  ProductController.updateSingleProduct
+);
+
+export const productRoutes = router;

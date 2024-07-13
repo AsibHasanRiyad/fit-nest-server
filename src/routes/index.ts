@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { ProductController } from "../modules/product/product.controller";
+import { productRoutes } from "../modules/product/product.route";
 
 const router = Router();
 const moduleRoutes = [
   {
-    path: "create-product",
-    route: ProductController.createProduct,
+    path: "/products",
+    route: productRoutes,
   },
 ];
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
