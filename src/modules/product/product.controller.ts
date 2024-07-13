@@ -16,7 +16,23 @@ const createProduct: RequestHandler = catchAsync(async (req, res, next) => {
 });
 
 const getAllProducts = catchAsync(async (req, res, next) => {
-  const result = await ProductServices.getAllProducts();
+  const { searchTerm, categories, minPrice, maxPrice, sortBy, sortOrder } =
+    req.query;
+  let categoriesArray: string[] = [];
+  if (typeof categories === "string") {
+    categoriesArray = categories.split(",");
+  } else if (Array.isArray(categories)) {
+    categoriesArray = categories as string[];
+  }
+  const filterOptions = {
+    searchTerm,
+    categories: categoriesArray,
+    minPrice: minPrice ? Number(minPrice) : null,
+    maxPrice: maxPrice ? Number(maxPrice) : null,
+    sortBy,
+    sortOrder,
+  };
+  const result = await ProductServices.getAllProducts(filterOptions);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
