@@ -36,6 +36,7 @@ class QueryBuilder<T> {
       "fields",
       "minPrice",
       "maxPrice",
+      "category",
     ];
     excludeFields.forEach((field) => delete queryObj[field]);
 
@@ -53,6 +54,9 @@ class QueryBuilder<T> {
       } as FilterQuery<T>);
     } else {
       this.modelQuery = this.modelQuery.find(queryObj as FilterQuery<T>);
+    }
+    if (this.query.category) {
+      queryObj.category = this.query.category;
     }
 
     return this;
