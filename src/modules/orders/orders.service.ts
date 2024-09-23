@@ -5,11 +5,9 @@ import { OrderModel } from "./order.model";
 const createOrder = async (payload: TOrder) => {
   for (const item of payload.products) {
     const product = await ProductModel.findById(item.productId);
-
     if (!product) {
       throw new Error(`Product not found.`);
     }
-
     if (item.quantity > product.stockQuantity) {
       throw new Error(
         `Quantity for product ${product.name} exceeds available stock.`

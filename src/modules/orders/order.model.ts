@@ -3,12 +3,10 @@ import { TOrder } from "./order.interface";
 
 const orderSchema = new Schema<TOrder>({
   name: { type: String, required: true },
-  user: {
-    name: { type: String, required: true },
-    phone: { type: String, required: true },
-    address: { type: String, required: true },
-    email: { type: String, required: true },
-  },
+  phone: { type: String, required: true },
+  address: { type: String, required: true },
+  email: { type: String, required: true, unique: false },
+
   products: [
     {
       productId: {
