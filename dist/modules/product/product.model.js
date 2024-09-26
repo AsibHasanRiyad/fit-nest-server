@@ -12,5 +12,7 @@ const productSchema = new mongoose_1.Schema({
     description: { type: String },
     image: { type: String },
     category: { type: String },
+}, {
+    timestamps: true,
 });
 exports.ProductModel = (0, mongoose_1.model)("Product", productSchema);

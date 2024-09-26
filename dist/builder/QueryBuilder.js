@@ -54,7 +54,7 @@ class QueryBuilder {
         return this;
     }
     sort() {
-        const sortField = this.query.sort || "createdAt";
+        const sortField = this.query.sort || "-createdAt";
         const sortOrder = sortField.startsWith("-") ? -1 : 1;
         const cleanSortField = sortField.replace(/^-/, "");
         this.modelQuery = this.modelQuery.sort({ [cleanSortField]: sortOrder });
