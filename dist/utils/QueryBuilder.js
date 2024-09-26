@@ -35,6 +35,7 @@ class QueryBuilder {
             "fields",
             "minPrice",
             "maxPrice",
+            "category",
         ];
         excludeFields.forEach((field) => delete queryObj[field]);
         // Handle price range filtering
@@ -50,6 +51,9 @@ class QueryBuilder {
         }
         else {
             this.modelQuery = this.modelQuery.find(queryObj);
+        }
+        if (this.query.category) {
+            queryObj.category = this.query.category;
         }
         return this;
     }
