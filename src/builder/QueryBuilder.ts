@@ -59,7 +59,7 @@ class QueryBuilder<T> {
   }
 
   sort() {
-    const sortField = (this.query.sort as string) || "createdAt";
+    const sortField = (this.query.sort as string) || "-createdAt";
     const sortOrder = sortField.startsWith("-") ? -1 : 1;
 
     const cleanSortField = sortField.replace(/^-/, "");
